@@ -10,33 +10,30 @@ class PostView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.green.shade100,
-        ),
-        margin: EdgeInsets.only(top: 20, bottom: 20),
-        width: double.maxFinite,
-        height: 200,
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    yorum.gidilenYer!,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Container(color: Colors.red, width: 150, height: 150),
-                ],
-              ),
-              Text(yorum.gideninYorumu!),
-            ],
+    return Scaffold(
+   
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.green.shade100,
+          ),
+          margin: EdgeInsets.only(top: 20, bottom: 20),
+          width: double.maxFinite,
+          height: 100,
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  yorum.gidilenYer!,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                Text(yorum.gideninYorumu!,style: Theme.of(context).textTheme.labelLarge,),
+              ],
+            ),
           ),
         ),
       ),

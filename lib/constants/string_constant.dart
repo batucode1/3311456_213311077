@@ -14,4 +14,10 @@ class StringConstant {
 
   static const String kullaniciAdi = "Kullanıcı Adı";
   static const String sifre = "Şifre";
+
+static const String yorumSayfasiBaslik="Yorumunu İnsanlarla Paylaş";
+static const String yorumSayfasiGonderiBasligi="Nereyi Gezdiniz ";
+static const String yorumSayfasiYorumBasligi="Geziniz Hakkındaki Düşünceleriniz";
+
+
 }

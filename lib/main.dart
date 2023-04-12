@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: RouteNavigasyon.routeNavigasyon,
+      
       debugShowCheckedModeBanner: false,
       title: '',
       theme: ThemeData(

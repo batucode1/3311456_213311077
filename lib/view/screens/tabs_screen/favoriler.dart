@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:vize_proje/comment/comments_view.dart';
+import 'package:vize_proje/constants/string_constant.dart';
 import 'package:vize_proje/entity/model.dart';
 
 class FavorilerEkrani extends StatefulWidget {
@@ -14,13 +15,13 @@ class FavorilerEkrani extends StatefulWidget {
 
 class _FavorilerEkraniState extends State<FavorilerEkrani> {
   final YorumList = Yorum.yorumListesi();
-  TextEditingController _postTitleTextEditingController =
+  TextEditingController _baslik =
       TextEditingController();
-  TextEditingController _postDescriptionTextEditingController =
+  TextEditingController _yorum =
       TextEditingController();
   addPost() {
-    String postTitle = _postTitleTextEditingController.value.text;
-    String postDescription = _postDescriptionTextEditingController.value.text;
+    String postTitle = _baslik.value.text;
+    String postDescription = _yorum.value.text;
 
     if (postDescription != "" && postTitle != "") {
       YorumList.add(Yorum(
@@ -28,8 +29,8 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
         gideninYorumu: postDescription,
       ));
 
-      _postDescriptionTextEditingController.clear();
-      _postTitleTextEditingController.clear();
+      _yorum.clear();
+      _baslik.clear();
       Navigator.pop(context);
     }
   }
@@ -37,8 +38,9 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset:false,
         appBar: AppBar(
-          title: Text("Yorumlar"),
+          title: Text("İnsanların Favorileri"),
           centerTitle: true,
           actions: [
             Padding(
@@ -70,11 +72,8 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
         isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
-          var pageTitle = "Gönderi Paylaş";
-          var title = "Gönderi Başlığı Giriniz ";
-          var description = "Gönderi Açıklaması Giriniz ";
-          var _facultyField = "Fakülte Seçiniz";
-          var buttonText = "YAYINLA";
+         
+        
           return Padding(
             padding: EdgeInsets.only(top: 50, right: 20, left: 20),
             child: Column(
@@ -83,7 +82,7 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      pageTitle,
+                      StringConstant.yorumSayfasiBaslik,
                       style: Theme.of(context).textTheme.headline6,
                     ),
                   ],
@@ -98,51 +97,45 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
-                        child: Text(title,
+                        child: Text(StringConstant.yorumSayfasiGonderiBasligi,
                             style: Theme.of(context).textTheme.bodyText2),
                       ),
-                      /*StreamBuilder<String?>(builder: (context, snapshot) {
-                        var hintText1 = 'Topluluk etkinliğine ne oldu??';
+                      StreamBuilder<String?>(builder: (context, snapshot) {
+                     
                         return TextFormField(
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
-                            hintText: hintText1,
+                           
                           ),
-                          controller: _postTitleTextEditingController,
+                          controller: _baslik,
                         );
-                      }),*/
+                      }),
                     ],
                   ),
                 )),
-                /*Form(
-                                child: Container(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(description,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText2),
-                                      StreamBuilder<String?>(
-                                          builder: (context, snapshot) {
-                                        var hintText2 =
-                                            'En son bir etkinlik yapılacaktı, haber yok mu..';
-                                        return TextFormField(
-                                          decoration: InputDecoration(
-                                            border: OutlineInputBorder(),
-                                            hintText: hintText2,
-                                          ),
-                                          keyboardType:
-                                              TextInputType.multiline,
-                                          controller:
-                                              _postDescriptionTextEditingController,
-                                        );
-                                      }),
-                                    ],
-                                  ),
-                                ),
-                              ),*/
+                Form(
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(StringConstant.yorumSayfasiYorumBasligi,
+                            style: Theme.of(context).textTheme.bodyText2),
+                        StreamBuilder<String?>(builder: (context, snapshot) {
+                          var hintText2 =
+                              'En son bir etkinlik yapılacaktı, haber yok mu..';
+                          return TextFormField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: hintText2,
+                            ),
+                            keyboardType: TextInputType.multiline,
+                            controller: _yorum,
+                          );
+                        }),
+                      ],
+                    ),
+                  ),
+                ),
                 ElevatedButton(
                   child: Text("ekle"),
                   onPressed: () {
