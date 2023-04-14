@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:vize_proje/entity/model.dart';
+import 'package:vize_proje/entitiy/model.dart';
 import 'package:vize_proje/view/screens/detay_ekrani.dart';
 import 'package:vize_proje/view/screens/giris_ekrani.dart';
 import 'package:vize_proje/view/screens/tabs_screen/haberler.dart';
 import 'package:vize_proje/view/screens/tabbar_yonetim.dart';
+
+import '../../entitiy/list.dart';
 
 class ListelemeEkrani extends StatefulWidget {
   const ListelemeEkrani({super.key});
@@ -21,7 +23,13 @@ class _ListelemeEkraniState extends State<ListelemeEkrani> {
       backgroundColor: Colors.greenAccent.shade200,
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Sonuçlar"),
+        title: Text(
+          "Sonuçlar",
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(color: Colors.white),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -62,31 +70,33 @@ class _ListelemeEkraniState extends State<ListelemeEkrani> {
                 color: Colors.white,
                 child: Container(
                   decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(20)),
-                  height: 300,
+                      BoxDecoration(borderRadius: BorderRadius.circular(40)),
+                  height: MediaQuery.of(context).size.height * 0.45,
                   width: MediaQuery.of(context).size.width,
                   child: Padding(
                     padding: const EdgeInsets.all(2),
                     child: Column(
                       children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Center(
-                            child: Text(
-                              detayDonusum.baslik.toString(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5!
-                                  .copyWith(color: Colors.black),
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Text(
+                            detayDonusum.baslik.toString(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5!
+                                .copyWith(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
                           ),
                         ),
                         Text(
-                          detayDonusum.detay! * 15,
+                          detayDonusum.detay!,
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText1!
-                              .copyWith(color: Colors.black),
+                              .titleMedium!
+                              .copyWith(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                         ),
                         Expanded(
                           child: Container(
@@ -112,5 +122,3 @@ class _ListelemeEkraniState extends State<ListelemeEkrani> {
     return ListeDonusumu[index];
   }
 }
-
-enum listeSonucu { birr, iki, uc, dort, bes, alti, yedi }

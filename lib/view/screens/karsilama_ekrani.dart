@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:lottie/lottie.dart';
 import 'package:vize_proje/config/route.dart';
 import 'package:vize_proje/constants/string_constant.dart';
 import 'package:vize_proje/view/screens/giris_ekrani.dart';
 import 'package:vize_proje/view/screens/kayit_ekrani.dart';
+
+import '../../constants/images.dart';
 
 class KarsilamaEkrani extends StatelessWidget {
   const KarsilamaEkrani({super.key});
@@ -13,11 +16,12 @@ class KarsilamaEkrani extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.green.shade200,
         body: Center(
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
               Text(
                 StringConstant.uygAdi,
@@ -25,40 +29,46 @@ class KarsilamaEkrani extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: Image.asset("assets/app_logo.png"),
-              ),
-              Text(
-                StringConstant.girisSlogan,
-                style: Theme.of(context).textTheme.headline4,
+                child: Lottie.asset(ImagesConstant.earthJson,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.4),
               ),
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/kayit');
-                        },
-                        child: const Text("kayıt ol"),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/giris');
-                        },
-                        child: const Text(StringConstant.girisYap),
-                      ),
-                    ),
-                  ],
+                child: Flexible(
+                  child: Row(
+                    children: [
+                      _kayitGirisButonMethod(context, () {
+                        Navigator.pushNamed(context, '/kayit');
+                      }, StringConstant.kayitOl, Icon(Icons.add)),
+                      SizedBox(width: 40),
+                      _kayitGirisButonMethod(context, () {
+                        Navigator.pushNamed(context, '/giris');
+                      }, StringConstant.girisYap,
+                          Icon(Icons.arrow_right_alt_outlined)),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Expanded _kayitGirisButonMethod(
+      BuildContext context, dynamic onPressed, String title, Icon icon) {
+    return Expanded(
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.all(10),
+            shape: StadiumBorder(),
+            backgroundColor: Colors.green,
+            side: BorderSide(color: Colors.white30, width: 3)),
+        icon: icon,
+        onPressed: onPressed,
+        label: Text(title),
       ),
     );
   }

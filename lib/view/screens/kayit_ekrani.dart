@@ -5,6 +5,9 @@ import 'package:vize_proje/constants/string_constant.dart';
 
 import 'package:vize_proje/view/screens/tabbar_yonetim.dart';
 
+import '../../widgets/elevated_kayit_giris.dart';
+import '../../widgets/textfield.dart';
+
 class KayitEkrani extends StatefulWidget {
   const KayitEkrani({super.key});
 
@@ -20,75 +23,55 @@ class _KayitEkraniState extends State<KayitEkrani> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false, //klavye açılınca hata çıkmaz
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.green.shade100,
         body: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
-                child: Container(
-                  width: Gwidth * 0.8,
-                  height: Yheight * 0.75,
-                  decoration: BoxDecoration(
-                    color: Colors.white70,
-                    boxShadow: const [
-                      BoxShadow(
-                          blurRadius: 10,
-                          color: Colors.black,
-                          blurStyle: BlurStyle.outer),
-                    ],
-                    borderRadius: BorderRadius.circular(20),
-                  ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 30),
+                _hosgeldinTexti(context, "Kayıt Olun"),
+                _hosgeldinTexti(context, "Ve Aramıza  Katılın"),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
                   child: Column(
                     children: [
                       const UserFields(text: "ad"),
                       const UserFields(text: "soyad"),
                       const UserFields(text: "mail"),
                       const UserFields(text: "şifre"),
-                      const UserFields(text: "şifre yeniden"),
-                      ElevatedButton(
+                      KayitVeGirisButonu(
+                          Gwidth: Gwidth,
+                          Yheight: Yheight,
+                          context: context,
+                          onPressed: () {},
+                          title: "kayıt ol ve gir"),
+                      SizedBox(height: 20),
+                      KayitVeGirisButonu(
+                          Gwidth: Gwidth,
+                          Yheight: Yheight,
+                          context: context,
                           onPressed: () {
-                            Navigator.pushNamed(context, '/anasayfa');
+                            Navigator.pushNamed(context, "/giris");
                           },
-                          child: const Text(StringConstant.kaydolVeGir)),
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/giris');
-                          },
-                          child: const Text('kayıtlıysanız giriş yapın')),
+                          title: "kayıtlıysan giriş yap")
                     ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-}
 
-class UserFields extends StatelessWidget {
-  final String text;
-  const UserFields({Key? key, required this.text}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 15, 25, 10),
-      child: Material(
-        borderRadius: BorderRadius.circular(20),
-        child: TextField(
-          textAlign: TextAlign.left,
-          showCursor: false,
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              label: Text(text),
-              prefixIcon: Icon(
-                Icons.keyboard,
-              )),
-        ),
-      ),
-    );
+  Text _hosgeldinTexti(BuildContext context, String title) {
+    return Text(title,
+        style: Theme.of(context)
+            .textTheme
+            .headlineMedium!
+            .copyWith(fontWeight: FontWeight.w500, color: Colors.black));
   }
 }

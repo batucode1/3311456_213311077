@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vize_proje/entity/model.dart';
+import 'package:vize_proje/entitiy/model.dart';
 
 class PostView extends StatelessWidget {
   final Yorum yorum;
@@ -10,30 +10,33 @@ class PostView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-   
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.green.shade100,
-          ),
-          margin: EdgeInsets.only(top: 20, bottom: 20),
-          width: double.maxFinite,
-          height: 100,
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
+    return SafeArea(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.green.shade100,
+        ),
+        margin: const EdgeInsets.only(top: 20, bottom: 20),
+        height: MediaQuery.of(context).size.height * 0.20,
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              /* Text(
                   yorum.gidilenYer!,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 Text(yorum.gideninYorumu!,style: Theme.of(context).textTheme.labelLarge,),
-              ],
-            ),
+              */
+              ListTile(
+                title: Text(yorum.gidilenYer.toString()),
+                subtitle: Text(yorum.gideninYorumu.toString()),
+                leading: Icon(Icons.people),
+              ),
+            ],
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vize_proje/config/route.dart';
+import 'package:vize_proje/view/screens/kayit_ekrani.dart';
 import 'package:vize_proje/view/screens/tabs_screen/anasayfa.dart';
 import 'package:vize_proje/view/screens/tabs_screen/favoriler.dart';
 import 'package:vize_proje/view/screens/tabs_screen/haberler.dart';
@@ -21,7 +22,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: RouteNavigasyon.routeNavigasyon,
-      
       debugShowCheckedModeBanner: false,
       title: '',
       theme: ThemeData(

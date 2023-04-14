@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:vize_proje/entity/model.dart';
+import 'package:vize_proje/constants/string_constant.dart';
+import 'package:vize_proje/entitiy/model.dart';
 import 'package:vize_proje/view/screens/tabbar_yonetim.dart';
+
+import '../../constants/images.dart';
 
 class DetayEkrani extends StatelessWidget {
   const DetayEkrani({super.key});
@@ -11,9 +14,13 @@ class DetayEkrani extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
-          "data" * 5,
-          style: Theme.of(context).textTheme.headline5,
+          StringConstant.detaylarAppBarText,
+          style: Theme.of(context)
+              .textTheme
+              .headline5!
+              .copyWith(color: Colors.white),
         ),
       ),
       body: SafeArea(
@@ -24,11 +31,12 @@ class DetayEkrani extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "data" * 2,
-                  style: Theme.of(context).textTheme.headline4,
+                  StringConstant.detaylarBaslik,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
+                SizedBox(height: 20),
                 Text(
-                  "data" * 20,
+                  StringConstant.detaylarAciklama1,
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 Padding(
@@ -41,7 +49,9 @@ class DetayEkrani extends StatelessWidget {
                           padding: const EdgeInsets.all(5),
                           child: Column(
                             children: [
-                              Text("data" * 30),
+                              Text(StringConstant.detaylarAciklama2,
+                                  style:
+                                      Theme.of(context).textTheme.labelLarge),
                             ],
                           ),
                         ),
@@ -50,26 +60,36 @@ class DetayEkrani extends StatelessWidget {
                         child: Container(
                             width: 300,
                             height: 200,
-                            child: Image.asset("assets/manzara.jpg")),
+                            child: Image.asset(ImagesConstant.manzara)),
                       ),
                     ],
                   ),
                 ),
-                Text("data" * 100),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 20),
-                  child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 200,
-                      child: Image.asset("assets/manzara.jpg")),
+                Text(
+                  StringConstant.detaylarParagraf1,
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
-                Text("data" * 50),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 20),
                   child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 200,
-                      child: Image.asset("assets/manzara.jpg")),
+                      child: Image.asset(
+                        ImagesConstant.boztepe,
+                        fit: BoxFit.cover,
+                      )),
+                ),
+                Text(StringConstant.detaylarParagraf2,
+                    style: Theme.of(context).textTheme.labelLarge),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, bottom: 20),
+                  child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                      child: Image.asset(
+                        ImagesConstant.boztepe_parasut,
+                        fit: BoxFit.cover,
+                      )),
                 ),
               ],
             ),

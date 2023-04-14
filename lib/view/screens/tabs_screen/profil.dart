@@ -3,6 +3,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:vize_proje/view/screens/tabbar_yonetim.dart';
 
+import '../../../constants/images.dart';
+
 class ProfilEkrani extends StatefulWidget {
   String ad;
   ProfilEkrani({required this.ad});
@@ -26,26 +28,25 @@ class _ProfilEkraniState extends State<ProfilEkrani> {
               children: [
                 Container(
                   width: Gwidth,
-                  height: 270,
+                  height: Gheight * 0.4,
                   child: Align(
                       alignment: Alignment.topCenter,
                       child: Image.asset(
-                        "assets/manzara.jpg",
+                        ImagesConstant.teleferik,
                         fit: BoxFit.cover,
                       )),
                 ),
                 Positioned(
-                  left: MediaQuery.of(context).size.width * 0.25,
+                  left: MediaQuery.of(context).size.width * 0.28,
                   top: 100,
                   child: Container(
                     child: CircleAvatar(
-                      radius: 75,
+                      radius: 65,
                       backgroundColor: Colors.green,
-                      child: CircleAvatar(
-                          radius: 70,
-                          backgroundImage: AssetImage(
-                            "assets/ardaturan.jpg",
-                          )),
+                      child: Icon(
+                        Icons.person,
+                        size: 80,
+                      ),
                     ),
                   ),
                 ),
@@ -54,7 +55,7 @@ class _ProfilEkraniState extends State<ProfilEkrani> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "giriş yapanın adı soyadı ",
+                "hoşgeldin " + widget.ad,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),

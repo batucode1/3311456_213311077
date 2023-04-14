@@ -12,21 +12,16 @@ class RouteNavigasyon {
   static Route<dynamic>? routeNavigasyon(RouteSettings settings) {
     switch (settings.name) {
       case '/kayit':
-        return _route(KayitEkrani());
+        return _route(const KayitEkrani());
       case '/anasayfa':
-        return _route(AnaSayfa());
+        return _route(const AnaSayfa());
       case '/giris':
-        return _route(GirisEkrani(
-          aktarilanAd: "",
-        ));
-      case '/tab':
-        return _route(TabbarYonetimSayfasi());
+        return _route(const GirisEkrani());
+
       case '/haberler':
-        return _route(HaberlerEkrani());
+        return _route(const HaberlerEkrani());
       case '/listeleme':
-        return _route(ListelemeEkrani());
-      case '/profil':
-        return _route(ProfilEkrani(ad: ""));
+        return _route(const ListelemeEkrani());
     }
   }
 

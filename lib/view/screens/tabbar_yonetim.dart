@@ -8,7 +8,8 @@ import 'package:vize_proje/view/screens/tabs_screen/haberler.dart';
 import 'package:vize_proje/view/screens/tabs_screen/profil.dart';
 
 class TabbarYonetimSayfasi extends StatefulWidget {
-  const TabbarYonetimSayfasi({super.key});
+  String aktarilanAd;
+  TabbarYonetimSayfasi({required this.aktarilanAd});
 
   @override
   State<TabbarYonetimSayfasi> createState() => _TabbarYonetimSayfasiState();
@@ -23,7 +24,7 @@ class _TabbarYonetimSayfasiState extends State<TabbarYonetimSayfasi> {
         bottomNavigationBar: BottomAppBar(
           color: Theme.of(context).colorScheme.primary,
           child: TabBar(
-            indicatorColor: Colors.red,
+            indicatorColor: Colors.white,
             tabs: _tabButonlari.values
                 .map((e) => Tab(
                       child: Text(
@@ -38,7 +39,7 @@ class _TabbarYonetimSayfasiState extends State<TabbarYonetimSayfasi> {
           AnaSayfa(),
           FavorilerEkrani(),
           HaberlerEkrani(),
-          ProfilEkrani(ad: ""),
+          ProfilEkrani(ad: widget.aktarilanAd),
         ]),
       ),
     );

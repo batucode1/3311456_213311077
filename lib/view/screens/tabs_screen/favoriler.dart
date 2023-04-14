@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:vize_proje/comment/comments_view.dart';
 import 'package:vize_proje/constants/string_constant.dart';
-import 'package:vize_proje/entity/model.dart';
+import 'package:vize_proje/entitiy/model.dart';
 
 class FavorilerEkrani extends StatefulWidget {
   const FavorilerEkrani({super.key});
@@ -15,18 +13,16 @@ class FavorilerEkrani extends StatefulWidget {
 
 class _FavorilerEkraniState extends State<FavorilerEkrani> {
   final YorumList = Yorum.yorumListesi();
-  TextEditingController _baslik =
-      TextEditingController();
-  TextEditingController _yorum =
-      TextEditingController();
+  TextEditingController _baslik = TextEditingController();
+  TextEditingController _yorum = TextEditingController();
   addPost() {
-    String postTitle = _baslik.value.text;
-    String postDescription = _yorum.value.text;
+    String postBasligi = _baslik.value.text;
+    String postYorumu = _yorum.value.text;
 
-    if (postDescription != "" && postTitle != "") {
+    if (postYorumu != "" && postBasligi != "") {
       YorumList.add(Yorum(
-        gidilenYer: postTitle,
-        gideninYorumu: postDescription,
+        gidilenYer: postBasligi,
+        gideninYorumu: postYorumu,
       ));
 
       _yorum.clear();
@@ -38,33 +34,41 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset:false,
-        appBar: AppBar(
-          title: Text("İnsanların Favorileri"),
-          centerTitle: true,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                  onPressed: () {
-                    yorum_ekle(context);
-                  },
-                  icon: Icon(Icons.ad_units)),
-            ),
-          ],
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: Text(
+          "Yorumlar",
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(color: Colors.white),
         ),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  for (Yorum yorum in YorumList.reversed) PostView(yorum: yorum)
-                ],
-              ),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+                tooltip: "yorum ekle",
+                onPressed: () {
+                  yorum_ekle(context);
+                },
+                icon: Icon(Icons.ad_units)),
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                for (Yorum yorum in YorumList.reversed) PostView(yorum: yorum),
+              ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Future<dynamic> yorum_ekle(BuildContext context) {
@@ -72,76 +76,79 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
         isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
-         
-        
           return Padding(
             padding: EdgeInsets.only(top: 50, right: 20, left: 20),
             child: Column(
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      StringConstant.yorumSayfasiBaslik,
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ],
-                ),
                 SizedBox(
-                  height: 10,
+                  height: 100,
                 ),
-                Form(
-                    child: Container(
+                Text(
+                  StringConstant.yorumEkle,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                SizedBox(height: 20),
+                Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
-                        child: Text(StringConstant.yorumSayfasiGonderiBasligi,
-                            style: Theme.of(context).textTheme.bodyText2),
+                        child: Text("Nereyi ziyaret ettiniz ?",
+                            style: Theme.of(context).textTheme.bodyLarge),
                       ),
                       StreamBuilder<String?>(builder: (context, snapshot) {
-                     
                         return TextFormField(
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                           
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25)),
+                            hintText: " Ulugöl",
                           ),
                           controller: _baslik,
                         );
                       }),
                     ],
                   ),
-                )),
-                Form(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(StringConstant.yorumSayfasiYorumBasligi,
-                            style: Theme.of(context).textTheme.bodyText2),
-                        StreamBuilder<String?>(builder: (context, snapshot) {
-                          var hintText2 =
-                              'En son bir etkinlik yapılacaktı, haber yok mu..';
-                          return TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: hintText2,
+                ),
+                SizedBox(height: 20),
+                Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          "Gittiğiniz yer hakkında düşünceleriniz belirtebilirsiniz",
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      StreamBuilder<String?>(builder: (context, snapshot) {
+                        return TextFormField(
+                          maxLines: 5,
+                          maxLength: 100,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            keyboardType: TextInputType.multiline,
-                            controller: _yorum,
-                          );
-                        }),
-                      ],
-                    ),
+                            hintText: "Beğendim ",
+                          ),
+                          keyboardType: TextInputType.multiline,
+                          controller: _yorum,
+                        );
+                      }),
+                    ],
                   ),
                 ),
-                ElevatedButton(
-                  child: Text("ekle"),
-                  onPressed: () {
-                    addPost();
-                    setState(() {});
-                  },
+                Container(
+                  width: double.infinity,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                  child: ElevatedButton(
+                    child: Text("yorumunu ekle"),
+                    onPressed: () {
+                      addPost();
+                      setState(() {});
+                    },
+                  ),
                 ),
               ],
             ),

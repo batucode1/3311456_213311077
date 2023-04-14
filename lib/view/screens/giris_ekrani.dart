@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:vize_proje/constants/string_constant.dart';
 import 'package:vize_proje/view/screens/tabbar_yonetim.dart';
 import 'package:vize_proje/view/screens/tabs_screen/anasayfa.dart';
+import 'package:vize_proje/view/screens/tabs_screen/profil.dart';
+
+import '../../constants/images.dart';
+import '../../widgets/elevated_kayit_giris.dart';
 
 class GirisEkrani extends StatefulWidget {
-  String aktarilanAd;
-  GirisEkrani({required this.aktarilanAd});
-
+  const GirisEkrani({Key? key}) : super(key: key);
   @override
   State<GirisEkrani> createState() => _GirisEkraniState();
 }
 
 class _GirisEkraniState extends State<GirisEkrani> {
-  TextEditingController? ad;
-
-  @override
-  void initState() {
-    ad = TextEditingController();
-    super.initState();
-  }
+  TextEditingController nameController = TextEditingController();
 
   String kulAdi = "";
   String sifre = "";
-  String defaultKulAdi = "batu";
-  String defaultSifre = "5252";
+  String defaultKulAdi_1 = "batu";
+  String defaultSifre_1 = "5252";
+  String defaultKulAdi_2 = "deneme";
+  String defaultSifre_2 = "deneme";
   void kayitDogrula() {
-    if ((kulAdi == defaultKulAdi) && (sifre == defaultSifre)) {
-      Navigator.pushNamed(context, "/tab");
+    if ((kulAdi == defaultKulAdi_1) && (sifre == defaultSifre_1) ||
+        (kulAdi == defaultKulAdi_2) && (sifre == defaultSifre_2)) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => TabbarYonetimSayfasi(
+              aktarilanAd: nameController
+                  .value.text) //ProfilEkrani(ad: nameController.value.text),
+          ));
     } else {
       showDialog(
         context: context,
@@ -69,10 +73,8 @@ class _GirisEkraniState extends State<GirisEkrani> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(StringConstant.girisYap),
-          centerTitle: true,
-        ),
+        backgroundColor: Colors.green.shade100,
+
         resizeToAvoidBottomInset: false, //klavye açılınca hata çıkmaz
 
         body: Form(
@@ -84,16 +86,15 @@ class _GirisEkraniState extends State<GirisEkrani> {
                   padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.25,
-                      ),
+                      Lottie.asset(ImagesConstant.welcomeJson,
+                          width: Gwidth, height: Yheight * 0.4),
                       Padding(
                         padding: const EdgeInsets.all(10),
                         child: Material(
                           color: Colors.green,
                           borderRadius: BorderRadius.circular(20),
                           child: TextFormField(
-                            controller: ad,
+                            controller: nameController,
                             keyboardType: TextInputType.emailAddress,
                             onChanged: (girilenKuladi) {
                               setState(() {
@@ -127,6 +128,7 @@ class _GirisEkraniState extends State<GirisEkrani> {
                               });
                             },
                             textAlign: TextAlign.left,
+                            keyboardType: TextInputType.visiblePassword,
                             showCursor: false,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -141,13 +143,12 @@ class _GirisEkraniState extends State<GirisEkrani> {
                           ),
                         ),
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              kayitDogrula();
-                            },
-                            child: const Text(StringConstant.girisYap)),
+                      KayitVeGirisButonu(
+                        Gwidth: Gwidth,
+                        Yheight: Yheight,
+                        context: context,
+                        onPressed: kayitDogrula,
+                        title: "giriş yap",
                       ),
                       TextButton(
                         onPressed: () {},
@@ -164,7 +165,16 @@ class _GirisEkraniState extends State<GirisEkrani> {
     );
   }
 }
-/*
+/*                      Container(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              kayitDogrula();
+                            },
+                            child: const Text(StringConstant.girisYap)),
+                      ),
+
+
 class UserFields extends StatefulWidget {
   final String text;
   const UserFields({Key? key, required this.text}) : super(key: key);
