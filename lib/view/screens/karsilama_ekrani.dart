@@ -63,10 +63,10 @@ class KarsilamaEkrani extends StatelessWidget {
     return Expanded(
       child: ElevatedButton.icon(
         style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.all(10),
-            shape: StadiumBorder(),
-            backgroundColor: Colors.green,
-            side: BorderSide(color: Colors.white30, width: 3)),
+          padding: EdgeInsets.all(10),
+          shape: StadiumBorder(),
+          backgroundColor: Colors.green,
+        ),
         icon: icon,
         onPressed: onPressed,
         label: Text(title),
