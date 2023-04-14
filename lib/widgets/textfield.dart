@@ -6,11 +6,13 @@ class UserFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double gWidth = MediaQuery.of(context).size.width;
+    double yHeight = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.fromLTRB(25, 15, 25, 10),
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.08,
+        width: gWidth,
+        height: yHeight * 0.08,
         child: Material(
           borderRadius: BorderRadius.circular(15),
           child: TextFormField(

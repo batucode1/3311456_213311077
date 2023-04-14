@@ -32,6 +32,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     double Yheight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           "nereleri gezmek istersin",
@@ -80,7 +81,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                               SizedBox(width: Gwidth * 0.01),
                               Expanded(
                                 child: DropDownFormField(
-                                    ilSec: "ilçe seç",
+                                    ilSec: "ilçe seç ",
                                     onChanged: (value) {
                                       setState(() {
                                         secilen_ilce = value.toString();

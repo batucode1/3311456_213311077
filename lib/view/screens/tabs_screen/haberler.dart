@@ -22,8 +22,9 @@ class _HaberlerEkraniState extends State<HaberlerEkrani> {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             title: Text(
-              "her gün farklı bir yer hakkında bilgiler",
+              StringConstant.appBarTitle,
               style: Theme.of(context)
                   .textTheme
                   .bodyLarge!
@@ -37,7 +38,7 @@ class _HaberlerEkraniState extends State<HaberlerEkrani> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    "Ordunun gözdesi Boztepe",
+                    StringConstant.haberTitle,
                     style: Theme.of(context).textTheme.headline4!.copyWith(
                         fontWeight: FontWeight.bold, color: Colors.black),
                   ),

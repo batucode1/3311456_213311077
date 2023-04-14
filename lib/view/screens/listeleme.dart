@@ -19,9 +19,12 @@ class ListelemeEkrani extends StatefulWidget {
 class _ListelemeEkraniState extends State<ListelemeEkrani> {
   @override
   Widget build(BuildContext context) {
+    double gWidth = MediaQuery.of(context).size.width;
+    double yHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.greenAccent.shade200,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           "Sonuçlar",

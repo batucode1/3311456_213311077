@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vize_proje/comment/comments_view.dart';
+import 'package:vize_proje/view/screens/comments_view.dart';
 import 'package:vize_proje/constants/string_constant.dart';
 import 'package:vize_proje/entitiy/model.dart';
 
@@ -36,6 +36,7 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           "Yorumlar",
           style: Theme.of(context)
@@ -52,7 +53,7 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
                 onPressed: () {
                   yorum_ekle(context);
                 },
-                icon: Icon(Icons.ad_units)),
+                icon: Icon(Icons.add_comment)),
           ),
         ],
       ),
@@ -94,7 +95,7 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
-                        child: Text("Nereyi ziyaret ettiniz ?",
+                        child: Text(StringConstant.yorumBaslik,
                             style: Theme.of(context).textTheme.bodyLarge),
                       ),
                       StreamBuilder<String?>(builder: (context, snapshot) {
@@ -115,8 +116,7 @@ class _FavorilerEkraniState extends State<FavorilerEkrani> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                          "Gittiğiniz yer hakkında düşünceleriniz belirtebilirsiniz",
+                      Text(StringConstant.yorumTitle,
                           style: Theme.of(context).textTheme.bodyLarge),
                       SizedBox(
                         height: 20,

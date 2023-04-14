@@ -14,6 +14,8 @@ class KarsilamaEkrani extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double gWidth = MediaQuery.of(context).size.width;
+    double yHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.green.shade200,
@@ -21,7 +23,7 @@ class KarsilamaEkrani extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+                height: gWidth * 0.1,
               ),
               Text(
                 StringConstant.uygAdi,
@@ -30,8 +32,7 @@ class KarsilamaEkrani extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Lottie.asset(ImagesConstant.earthJson,
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.4),
+                    width: gWidth, height: yHeight * 0.4),
               ),
               Padding(
                 padding: const EdgeInsets.all(10),

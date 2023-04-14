@@ -8,8 +8,9 @@ class KayitVeGirisButonu extends StatelessWidget {
     required this.context,
     required this.onPressed,
     required this.title,
+    required this.icon,
   });
-
+  final Icon icon;
   final double Gwidth;
   final double Yheight;
   final BuildContext context;
@@ -19,9 +20,10 @@ class KayitVeGirisButonu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      icon: Icon(Icons.event_repeat),
+      icon: icon,
       label: Text(title),
       style: ElevatedButton.styleFrom(
+        textStyle: TextStyle(color: Colors.white),
         padding: EdgeInsets.all(10),
         fixedSize: Size(Gwidth * 0.7, Yheight * 0.07),
         backgroundColor: Colors.green,

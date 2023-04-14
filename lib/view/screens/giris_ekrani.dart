@@ -147,8 +147,9 @@ class _GirisEkraniState extends State<GirisEkrani> {
                         Gwidth: Gwidth,
                         Yheight: Yheight,
                         context: context,
+                        icon: Icon(Icons.turn_right_rounded),
                         onPressed: kayitDogrula,
-                        title: "giriş yap",
+                        title: StringConstant.girisYap,
                       ),
                       TextButton(
                         onPressed: () {},
@@ -165,46 +166,3 @@ class _GirisEkraniState extends State<GirisEkrani> {
     );
   }
 }
-/*                      Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              kayitDogrula();
-                            },
-                            child: const Text(StringConstant.girisYap)),
-                      ),
-
-
-class UserFields extends StatefulWidget {
-  final String text;
-  const UserFields({Key? key, required this.text}) : super(key: key);
-
-  @override
-  State<UserFields> createState() => _UserFieldsState();
-}
-
-class _UserFieldsState extends State<UserFields> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Material(
-        borderRadius: BorderRadius.circular(20),
-        child: TextField(
-          onChanged: (deger) {
-            setState(() {});
-          },
-          textAlign: TextAlign.left,
-          showCursor: false,
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              label: Text(widget.text),
-              prefixIcon: Icon(
-                Icons.keyboard,
-              )),
-        ),
-      ),
-    );
-  }
-}
-*/

@@ -16,13 +16,15 @@ class SliderWidget extends StatefulWidget {
 class _SliderWidgetState extends State<SliderWidget> {
   @override
   Widget build(BuildContext context) {
+    double gWidth = MediaQuery.of(context).size.width;
+    double yHeight = MediaQuery.of(context).size.height;
     return CarouselSlider.builder(
       itemCount: widget.SliderImages.length,
       itemBuilder: (context, index, realIndex) {
         final herBirFotograf = widget.SliderImages[index];
         return Container(
           margin: EdgeInsets.all(5),
-          width: MediaQuery.of(context).size.width,
+          width: gWidth,
           height: 400,
           child: Image.asset(
             herBirFotograf,

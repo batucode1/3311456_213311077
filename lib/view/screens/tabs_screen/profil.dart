@@ -16,8 +16,8 @@ class ProfilEkrani extends StatefulWidget {
 class _ProfilEkraniState extends State<ProfilEkrani> {
   @override
   Widget build(BuildContext context) {
-    double Gwidth = MediaQuery.of(context).size.width;
-    double Gheight = MediaQuery.of(context).size.height;
+    double gWidth = MediaQuery.of(context).size.width;
+    double yHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -27,8 +27,8 @@ class _ProfilEkraniState extends State<ProfilEkrani> {
             Stack(
               children: [
                 Container(
-                  width: Gwidth,
-                  height: Gheight * 0.4,
+                  width: gWidth,
+                  height: yHeight * 0.4,
                   child: Align(
                       alignment: Alignment.topCenter,
                       child: Image.asset(

@@ -12,8 +12,11 @@ class DetayEkrani extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double gWidth = MediaQuery.of(context).size.width;
+    double yHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           StringConstant.detaylarAppBarText,
@@ -72,7 +75,7 @@ class DetayEkrani extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 20),
                   child: Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: gWidth,
                       height: 200,
                       child: Image.asset(
                         ImagesConstant.boztepe,
@@ -84,7 +87,7 @@ class DetayEkrani extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 20, bottom: 20),
                   child: Container(
-                      width: MediaQuery.of(context).size.width,
+                      width: gWidth,
                       height: 200,
                       child: Image.asset(
                         ImagesConstant.boztepe_parasut,

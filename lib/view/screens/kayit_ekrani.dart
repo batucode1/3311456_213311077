@@ -31,8 +31,8 @@ class _KayitEkraniState extends State<KayitEkrani> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 30),
-                _hosgeldinTexti(context, "Kayıt Olun"),
-                _hosgeldinTexti(context, "Ve Aramıza  Katılın"),
+                _hosgeldinTexti(context, StringConstant.kayitTitle1),
+                _hosgeldinTexti(context, StringConstant.kayitTitle2),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
                   child: Column(
@@ -42,20 +42,24 @@ class _KayitEkraniState extends State<KayitEkrani> {
                       const UserFields(text: "mail"),
                       const UserFields(text: "şifre"),
                       KayitVeGirisButonu(
-                          Gwidth: Gwidth,
-                          Yheight: Yheight,
-                          context: context,
-                          onPressed: () {},
-                          title: "kayıt ol ve gir"),
+                        Gwidth: Gwidth,
+                        Yheight: Yheight,
+                        context: context,
+                        onPressed: () {},
+                        title: StringConstant.kayitOlVeGir,
+                        icon: const Icon(Icons.person_add),
+                      ),
                       SizedBox(height: 20),
                       KayitVeGirisButonu(
-                          Gwidth: Gwidth,
-                          Yheight: Yheight,
-                          context: context,
-                          onPressed: () {
-                            Navigator.pushNamed(context, "/giris");
-                          },
-                          title: "kayıtlıysan giriş yap")
+                        Gwidth: Gwidth,
+                        Yheight: Yheight,
+                        context: context,
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/giris");
+                        },
+                        title: StringConstant.kayitliysan,
+                        icon: Icon(Icons.turn_right_rounded),
+                      ),
                     ],
                   ),
                 ),
