@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class StringConstant {
   //karşılama ekrani
-  static const uygAdi = "uygulamanın adı";
+  static const uygAdi = "Araştır ve Gez";
   static const girisSlogan = "oku , araştır istersen git";
   static const kayitOl = "kayıt ol";
 
